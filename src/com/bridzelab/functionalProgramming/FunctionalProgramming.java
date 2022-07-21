@@ -2,32 +2,41 @@ package com.bridzelab.functionalProgramming;
 import java.util.Scanner;  //Import arrays
 public class FunctionalProgramming {
     public static void main(String[] args){   //Entry Point of Program
+    	// value a, b, and c
+        double a = 8.5, b = 4, c = 9.8;
+        double root1, root2;
 
-    	int row, col, i, j;
-        int arr[][] = new int[2][2];
-        Scanner scan = new Scanner(System.in);
+        // calculate the determinant (b2 - 4ac)
+        double determinant = b * b - 4 * a * c;
 
-        // enter row and column for array.
-        System.out.print("Enter row for the array (max 2) : ");
-        row = scan.nextInt();
-        System.out.print("Enter column for the array (max 2) : ");
-        col = scan.nextInt();
+        // check if determinant is greater than 0
+        if (determinant > 0) {
 
-        // enter array elements.
-        System.out.println("Enter " + (row * col) + " Array Elements : ");
-        for (i = 0; i < row; i++) {
-          for (j = 0; j < col; j++) {
-            arr[i][j] = scan.nextInt();
-          }
+          // two real and distinct roots
+          root1 = (-b + Math.sqrt(determinant)) / (2 * a);
+          root2 = (-b - Math.sqrt(determinant)) / (2 * a);
+
+          System.out.format("root1 = %.2f and root2 = %.2f", root1, root2);
         }
 
-        // the 2D array is here.
-        System.out.print("The Array is :\n");
-        for (i = 0; i < row; i++) {
-          for (j = 0; j < col; j++) {
-            System.out.print(arr[i][j] + "  ");
-          }
-          System.out.println();
+        // check if determinant is equal to 0
+        else if (determinant == 0) {
+
+          // two real and equal roots
+          // determinant is equal to 0
+          // so -b + 0 == -b
+          root1 = root2 = -b / (2 * a);
+          System.out.format("root1 = root2 = %.2f;", root1);
+        }
+
+        // if determinant is less than zero
+        else {
+
+          // roots are complex number and distinct
+          double real = -b / (2 * a);
+          double imaginary = Math.sqrt(-determinant) / (2 * a);
+          System.out.format("root1 = %.2f+%.2fi", real, imaginary);
+          System.out.format("\nroot2 = %.2f-%.2fi", real, imaginary);
         }
       }
     }
